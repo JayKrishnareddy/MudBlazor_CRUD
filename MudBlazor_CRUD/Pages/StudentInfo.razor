@@ -1,0 +1,99 @@
+﻿@page "/student"
+
+@using MudBlazor_CRUD.Models
+@inject MudBlazor_CRUD.Services.IStudentService _studentService
+@inject MudBlazor.ISnackbar snackBar
+
+
+<MudCard Elevation="25">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">Add / Edit Students</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudTextField @bind-Value="student.StudentName" Label="Student Name" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+        <MudTextField @bind-Value="student.StudentAge" Label="Age" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+        <MudTextField @bind-Value="student.Address" Label="Address" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+        <MudTextField @bind-Value="student.ContactNo" Label="Contact Number" Variant="Variant.Text" Margin="Margin.Normal"></MudTextField>
+        <br />
+        <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="Save">Save Student</MudButton>
+    </MudCardContent>
+</MudCard>
+<br />
+<MudTable Elevation="25" Items="GetAllStudents()" Filter="new Func<Student, bool>(Search)" @bind-customer="student">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Students</MudText>
+        <MudToolBarSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Search for Students..." Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Student Name</MudTh>
+        <MudTh>Age</MudTh>
+        <MudTh>Address</MudTh>
+        <MudTh>ContactNo</MudTh>
+        <MudTh>Actions</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Id">@context.StudentID</MudTd>
+        <MudTd DataLabel="Student Name">@context.StudentName</MudTd>
+        <MudTd DataLabel="Age">@context.StudentAge</MudTd>
+        <MudTd DataLabel="Address">@context.Address</MudTd>
+        <MudTd DataLabel="ContactNo">@context.ContactNo</MudTd>
+        <MudTd DataLabel="">
+            <MudFab @onclick="@(()=>Edit(@context.StudentID))" Color="Color.Primary" Icon="@Icons.Material.Filled.Edit" Size="Size.Small" IconSize="Size.Small" />
+            <MudFab @onclick="@(()=>Delete(@context.StudentID))" Color="Color.Secondary" Icon="@Icons.Material.Filled.Delete" Size="Size.Small" IconSize="Size.Small" />
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[] { 5,10,20,50}" />
+    </PagerContent>
+</MudTable>
+
+@code{
+    private string searchString = "";
+
+    private Student student = new(); //C# 9 Syntax
+    private List<Student> students = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        GetAllStudents();
+    }
+
+    private List<Student> GetAllStudents()
+    {
+        students  = _studentService.GetStudents();
+        return students;
+    }
+    private bool Search(Student student)
+    {
+        if (student.StudentName is not null && student.StudentAge is not null && student.Address is not null && student.ContactNo is not null &&
+            student.StudentName.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+            || student.StudentAge.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+            || student.Address.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+            || student.ContactNo.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void Save()
+    {
+        _studentService.InsertCustomer(student);
+        snackBar.Add("Student record saved", Severity.Success);
+        GetAllStudents();
+    }
+    private void Edit(int id)
+    {
+        student = students.FirstOrDefault(c => c.StudentID == id);
+    }
+    private void Delete(int id)
+    {
+        _studentService.DeleteCustomer(id);
+        snackBar.Add("Customer Data Deleted.", Severity.Success);
+        GetAllStudents();
+    }
+}
