@@ -23,13 +23,13 @@ namespace MudBlazor_CRUD.Services
 
         public List<Student> GetStudents() => _repository.GetAll();
 
-        public void InsertCustomer(Student customer) 
+        public void InsertStudent(Student customer) 
         {
             if (customer.StudentID is 0) _repository.Insert(customer);
             else _repository.Update(customer);
         } 
 
-        public void DeleteCustomer(int id)
+        public void DeleteStudent(int id)
         {
             Student student = _appDbContext.Students.FirstOrDefault(c => c.StudentID.Equals(id));
             _repository.Remove(student);

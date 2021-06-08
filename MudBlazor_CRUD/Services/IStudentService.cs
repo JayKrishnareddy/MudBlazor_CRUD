@@ -6,7 +6,7 @@ namespace MudBlazor_CRUD.Services
    public interface IStudentService
     {
         List<Student> GetStudents();
-        void InsertCustomer(Student customer);
-        void DeleteCustomer(int id);
+        void InsertStudent(Student customer);
+        void DeleteStudent(int id);
     }
 }
