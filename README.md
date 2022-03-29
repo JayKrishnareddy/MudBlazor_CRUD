@@ -1,6 +1,8 @@
 
 ## Working With MudBlazor UI Component In Blazor Using .Net 5 
 
+![Alt Text](https://github.com/JayKrishnareddy/CleanArchitecture/blob/master/1_Tpfkss_hdHNyaaJ_3bBgWQ.png)
+
 ### Table of Contents
 - Introducing MudBlazor.
 - Prerequisites
