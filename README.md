@@ -17,3 +17,5 @@ If you want to learn more about this Article 👇🏻
 
 [**C# Corner**](https://www.c-sharpcorner.com/article/working-with-mudblazor-ui-component-in-blazor-using-net-5/ "C# Corner")
 
+[**Medium**](https://jaykrishnareddy.medium.com/working-with-mudblazor-ui-component-in-blazor-using-net-5-0-604d8a29791e "Medium")
+
