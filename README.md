@@ -1,5 +1,5 @@
 
-## Working With MudBlazor UI Component In Blazor Using .Net 5 
+## Working With MudBlazor UI Component In Blazor Using .Net 5.0 
 
 ![Alt Text](https://github.com/JayKrishnareddy/MudBlazor_CRUD/blob/master/Blazor.jpg)
 
