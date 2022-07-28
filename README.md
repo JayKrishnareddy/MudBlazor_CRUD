@@ -13,7 +13,7 @@
 - Building the UI with MudBlazor components
 - Conclusion
 
-If you want to learn more about this Article 👇🏻
+If you want to learn more about this, Do check out my article published from below 👇🏻
 
 [**C# Corner**](https://www.c-sharpcorner.com/article/working-with-mudblazor-ui-component-in-blazor-using-net-5/ "C# Corner")
 
