@@ -19,3 +19,5 @@ If you want to learn more about this, Do check out my article published from bel
 
 [**Medium**](https://levelup.gitconnected.com/working-with-mudblazor-ui-component-in-blazor-using-net-5-0-604d8a29791e "Medium")
 
+If you liked the repo then kindly support it by giving it a star ⭐
+
